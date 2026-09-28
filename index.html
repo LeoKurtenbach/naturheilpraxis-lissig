@@ -68,7 +68,12 @@ nav {
   transition: box-shadow 0.35s var(--ease-organic);
 }
 nav.scrolled { box-shadow: 0 4px 28px rgba(21,18,16,0.10); }
-.nav-logo { font-family: var(--font-serif); font-size: clamp(0.85rem, 1.1vw, 1rem); font-weight: 400; color: var(--deep); text-decoration: none; white-space: nowrap; }
+.nav-logo {
+  display: flex; align-items: center; gap: 0.65rem;
+  font-family: var(--font-serif); font-size: clamp(0.82rem, 1.05vw, 0.98rem);
+  font-weight: 400; color: var(--deep); text-decoration: none; white-space: nowrap;
+}
+.nav-logo-emblem { height: 30px; width: auto; display: block; opacity: 0.80; flex-shrink: 0; }
 .nav-links { display: flex; gap: clamp(1.25rem, 2.5vw, 2.5rem); list-style: none; align-items: center; }
 .nav-links a {
   font-size: clamp(0.9rem, 1.1vw, 1.1rem);
@@ -126,7 +131,9 @@ nav.scrolled { box-shadow: 0 4px 28px rgba(21,18,16,0.10); }
 /* ── Hero ── */
 #hero {
   min-height: 100vh; position: relative;
-  display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  align-items: end;
   padding: 0;
 }
 #hero::before {
@@ -142,8 +149,9 @@ nav.scrolled { box-shadow: 0 4px 28px rgba(21,18,16,0.10); }
 }
 .hero-content {
   position: relative; z-index: 1;
-  width: 100%;
-  padding: 0 clamp(1.5rem, 5vw, 5rem) clamp(3rem, 5vw, 5.5rem);
+  padding-left: clamp(1.5rem, 5vw, 5rem);
+  padding-right: clamp(1rem, 2vw, 2rem);
+  padding-bottom: clamp(3rem, 5vw, 5.5rem);
   display: flex; flex-direction: column;
 }
 .hero-overline {
@@ -152,30 +160,46 @@ nav.scrolled { box-shadow: 0 4px 28px rgba(21,18,16,0.10); }
 }
 .hero-headline {
   font-family: var(--font-serif);
-  font-size: clamp(3rem, 4.2vw, 5rem);
+  font-size: clamp(2.8rem, 3.8vw, 4.8rem);
   font-weight: 400; line-height: 1.06; letter-spacing: -0.025em;
-  color: var(--white); margin-bottom: 3rem; max-width: 820px;
+  color: var(--white); margin-bottom: 2.5rem; max-width: 680px;
   text-shadow: 0 2px 20px rgba(0,0,0,0.50);
 }
 .hero-sub {
-  font-size: clamp(1.15rem, 1.55vw, 1.4rem);
-  color: rgba(255,255,255,0.90); line-height: 1.82; max-width: 580px; margin-bottom: 3rem;
+  font-size: clamp(1.1rem, 1.45vw, 1.35rem);
+  color: rgba(255,255,255,0.90); line-height: 1.82; max-width: 520px; margin-bottom: 3rem;
 }
 .hero-actions {
   display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; margin-bottom: 2.5rem;
 }
 .hero-tags {
   display: flex; align-items: center; flex-wrap: wrap;
-  width: 100%; max-width: 900px;
+  width: 100%; max-width: 700px;
   border-top: 1px solid rgba(255,255,255,0.16); padding-top: 1.75rem;
 }
 .tag {
-  font-size: clamp(0.95rem, 1.1vw, 1.15rem); letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: clamp(0.88rem, 1.05vw, 1.05rem); letter-spacing: 0.14em; text-transform: uppercase;
   color: rgba(255,255,255,0.82); font-weight: 500; text-decoration: none;
   transition: color var(--dur-ui) var(--ease-organic);
 }
 .tag:hover { color: var(--rose); }
-.tag-sep { color: var(--rose); font-size: 0.85rem; margin: 0 0.85rem; opacity: 0.70; }
+.tag-sep { color: var(--rose); font-size: 0.85rem; margin: 0 0.75rem; opacity: 0.70; }
+
+/* ── Hero portrait ── */
+.hero-portrait {
+  position: relative; z-index: 1;
+  align-self: end;
+  padding-right: clamp(2rem, 4vw, 4rem);
+}
+.hero-portrait-img {
+  display: block;
+  width: 100%;
+  height: 78vh;
+  object-fit: cover;
+  object-position: center top;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 10%, black 26%);
+  mask-image: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.35) 10%, black 26%);
+}
 
 /* ── Buttons ── */
 .btn-primary {
@@ -207,7 +231,7 @@ section > * { position: relative; z-index: 1; }
 /* ── Über mich ── */
 #ueber { overflow: hidden; }
 #ueber::before { content: ''; position: absolute; inset: 0; background: rgba(245,238,228,0.88); pointer-events: none; }
-.ueber-layout { display: grid; grid-template-columns: 1fr 360px; gap: clamp(3rem, 6vw, 7rem); align-items: start; }
+.ueber-layout { display: grid; grid-template-columns: 1fr 340px; gap: clamp(3rem, 6vw, 7rem); align-items: start; }
 .ueber-text .section-body { max-width: 100%; }
 .ueber-body-2 { font-size: clamp(1.05rem, 1.4vw, 1.3rem); color: var(--mid); line-height: 1.95; margin-top: 1.75rem; }
 .ueber-qualifications { list-style: none; margin-top: 2.5rem; display: flex; flex-direction: column; gap: 0.75rem; }
@@ -222,7 +246,6 @@ section > * { position: relative; z-index: 1; }
 .ueber-quote { border-top: 1px solid rgba(160,69,96,0.22); border-bottom: 1px solid rgba(160,69,96,0.22); padding: clamp(1.75rem, 2.5vw, 2.5rem) 0; }
 .ueber-quote p { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.1rem, 1.5vw, 1.35rem); color: var(--deep); line-height: 1.75; margin-bottom: 1rem; }
 .ueber-quote cite { font-size: 0.9rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; font-style: normal; }
-@media (max-width: 900px) { .ueber-layout { grid-template-columns: 1fr; } .ueber-aside { display: none; } }
 
 /* ── Therapien ── */
 #therapien { overflow: hidden; }
@@ -230,7 +253,17 @@ section > * { position: relative; z-index: 1; }
 #therapien .section-overline { color: var(--rose-pale); }
 #therapien .section-title { color: var(--white); }
 #therapien .section-body { color: rgba(255,255,255,0.82); }
-.therapien-header { margin-bottom: clamp(2.5rem, 4vw, 4rem); }
+.therapien-header {
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: clamp(2.5rem, 5vw, 5rem); align-items: start;
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+.therapien-header-img {
+  display: block; width: 100%; aspect-ratio: 4/3;
+  object-fit: cover; object-position: center;
+  border-top: 2px solid var(--rose);
+  opacity: 0.88;
+}
 .therapien-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.75rem, 1.5vw, 1.5rem); }
 .therapie-card {
   background: rgba(255,255,255,0.05);
@@ -244,15 +277,24 @@ section > * { position: relative; z-index: 1; }
 .therapie-body { padding: clamp(1.25rem, 1.8vw, 1.75rem) clamp(1rem, 1.5vw, 1.5rem) clamp(1.5rem, 2vw, 2rem); }
 .therapie-name { font-family: var(--font-serif); font-size: clamp(1rem, 1.3vw, 1.2rem); font-weight: 400; color: var(--white); margin-bottom: 0.75rem; line-height: 1.3; }
 .therapie-desc { font-size: clamp(0.88rem, 1vw, 1rem); color: rgba(255,255,255,0.72); line-height: 1.75; }
-@media (max-width: 1024px) { .therapien-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 480px) { .therapien-grid { grid-template-columns: 1fr; } }
 
 /* ── Behandlung ── */
 #behandlung { overflow: hidden; }
 #behandlung::before { content: ''; position: absolute; inset: 0; background: rgba(245,238,228,0.88); pointer-events: none; }
 #behandlung .section-overline { color: var(--rose-dark); }
 #behandlung .section-title { color: var(--deep); }
-.behandlung-header { margin-bottom: clamp(2.5rem, 4vw, 4.5rem); }
+.behandlung-header {
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: clamp(2.5rem, 5vw, 5rem); align-items: start;
+  margin-bottom: clamp(2.5rem, 4vw, 4.5rem);
+}
+.behandlung-header-text .section-body { max-width: 100%; }
+.behandlung-header-img {
+  display: block; width: 100%; aspect-ratio: 4/3;
+  object-fit: cover; object-position: center;
+  border-top: 3px solid var(--rose);
+  box-shadow: 0 4px 20px rgba(21,18,16,0.10);
+}
 .behandlung-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1.5rem, 3vw, 3rem); }
 .behandlung-step {
   background: var(--white);
@@ -265,7 +307,6 @@ section > * { position: relative; z-index: 1; }
 .step-number { font-family: var(--font-serif); font-size: 2.5rem; color: rgba(160,69,96,0.20); line-height: 1; margin-bottom: 1.5rem; display: block; font-style: italic; }
 .step-title { font-family: var(--font-serif); font-size: clamp(1.15rem, 1.6vw, 1.4rem); font-weight: 400; color: var(--deep); margin-bottom: 1.25rem; line-height: 1.3; }
 .step-desc { font-size: clamp(0.95rem, 1.15vw, 1.1rem); color: var(--mid); line-height: 1.9; }
-@media (max-width: 900px) { .behandlung-steps { grid-template-columns: 1fr; } }
 
 /* ── Kontakt ── */
 #kontakt::before { content: ''; position: absolute; inset: 0; background: rgba(28,16,8,0.88); pointer-events: none; }
@@ -280,7 +321,7 @@ section > * { position: relative; z-index: 1; }
 .kontakt-person-tel { font-size: 1rem; color: rgba(255,255,255,0.72); line-height: 1.9; }
 .kontakt-person-email { font-size: 1rem; color: var(--rose); text-decoration: none; display: flex; align-items: center; min-height: 44px; word-break: break-all; }
 .kontakt-address { font-size: 0.85rem; color: rgba(255,255,255,0.65); letter-spacing: 0.06em; margin-top: 0.5rem; line-height: 1.8; }
-.kontakt-note { font-size: clamp(0.9rem, 1.1vw, 1.05rem); color: rgba(255,255,255,0.58); line-height: 1.75; margin-top: 1.75rem; font-style: italic; }
+.kontakt-note { font-size: clamp(0.9rem, 1.1vw, 1.05rem); color: rgba(255,255,255,0.55); line-height: 1.75; margin-top: 1.75rem; font-style: italic; }
 
 /* ── Form ── */
 .kontakt-form { display: flex; flex-direction: column; gap: 1.25rem; }
@@ -318,15 +359,32 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 .footer-links a:hover { color: var(--rose); }
 
 /* ── Breakpoints ── */
+@media (max-width: 1024px) {
+  .therapien-grid { grid-template-columns: repeat(2, 1fr); }
+  .therapien-header { grid-template-columns: 1fr; }
+  .therapien-header-img-wrap { display: none; }
+  .behandlung-header { grid-template-columns: 1fr; }
+  .behandlung-header-img-wrap { display: none; }
+}
+@media (max-width: 900px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-portrait { display: none; }
+  .hero-headline { font-size: clamp(2.5rem, 6vw, 4rem); }
+  .ueber-layout { grid-template-columns: 1fr; }
+  .ueber-aside { display: none; }
+  .behandlung-steps { grid-template-columns: 1fr; }
+}
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
+  .hero-content { padding-left: clamp(1.5rem, 5vw, 3rem); padding-right: clamp(1.5rem, 5vw, 3rem); }
   .hero-actions { flex-direction: column; align-items: flex-start; width: 100%; gap: 1rem; }
   .hero-actions .btn-primary { width: 100%; max-width: 320px; }
   .kontakt-grid { grid-template-columns: 1fr; gap: 2rem; }
   footer { flex-direction: column; gap: 1.25rem; text-align: center; }
 }
 @media (max-width: 480px) {
+  .therapien-grid { grid-template-columns: 1fr; }
   .hero-headline { line-height: 1.1; }
   .behandlung-step { padding: 1.75rem 1.5rem; }
   .btn-primary { padding: 1rem 2rem; }
@@ -339,7 +397,12 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 <div class="progress-bar" id="progressBar"></div>
 
 <nav id="mainNav">
-  <a href="#" class="nav-logo">Praxis für Naturheilverfahren · Uta Lissig</a>
+  <a href="#" class="nav-logo">
+    <img src="https://naturheilverfahren-merseburg.de/image/logo_kl.png"
+         alt="" aria-hidden="true" class="nav-logo-emblem"
+         width="30" height="30">
+    Praxis für Naturheilverfahren · Uta Lissig
+  </a>
   <ul class="nav-links">
     <li><a href="#ueber">Über mich</a></li>
     <li><a href="#therapien">Therapien</a></li>
@@ -381,6 +444,13 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
       <a href="#therapien" class="tag">Krampfadern</a>
     </div>
   </div>
+  <div class="hero-portrait">
+    <img src="https://naturheilverfahren-merseburg.de/image/Uta%20Lissig.jpg"
+         alt="Uta Lissig, Heilpraktikerin"
+         loading="eager"
+         width="360" height="540"
+         class="hero-portrait-img">
+  </div>
 </section>
 
 <!-- ── Über mich ── -->
@@ -405,7 +475,7 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
     <div class="ueber-aside">
       <img src="https://naturheilverfahren-merseburg.de/image/Uta%20Lissig.jpg"
            alt="Uta Lissig, Heilpraktikerin"
-           loading="eager" width="360" height="480"
+           loading="lazy" width="340" height="453"
            class="ueber-photo">
       <div class="ueber-quote">
         <p>„Allein die Dosis macht, daß ein Ding kein Gift ist."</p>
@@ -418,26 +488,32 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 <!-- ── Therapien ── -->
 <section id="therapien">
   <div class="therapien-header">
-    <span class="section-overline">Therapieverfahren</span>
-    <h2 class="section-title gsap-fade">Viele Wege führen nach Rom — und zur Gesundheit.</h2>
-    <p class="section-body">Welches Verfahren für Sie und Ihre individuellen Beschwerden am besten geeignet ist, erarbeiten wir gemeinsam. Zusätzlich stehen je nach Beschwerdebild Komplexhomöopathie und Akupunktur zur Verfügung.</p>
+    <div class="therapien-header-text">
+      <span class="section-overline">Therapieverfahren</span>
+      <h2 class="section-title gsap-fade">Viele Wege führen nach Rom — und zur Gesundheit.</h2>
+      <p class="section-body">Welches Verfahren für Sie und Ihre individuellen Beschwerden am besten geeignet ist, erarbeiten wir gemeinsam. Zusätzlich stehen je nach Beschwerdebild Komplexhomöopathie und Akupunktur zur Verfügung.</p>
+    </div>
+    <div class="therapien-header-img-wrap">
+      <img src="https://naturheilverfahren-merseburg.de/image/therapie.jpg"
+           alt="Naturheilkundliche Therapie"
+           loading="lazy" width="380" height="285"
+           class="therapien-header-img">
+    </div>
   </div>
   <div class="therapien-grid">
 
     <div class="therapie-card">
       <img src="https://naturheilverfahren-merseburg.de/image/Phytotherapie_G.jpg"
-           alt="Phytotherapie — Heilpflanzen und Kräuter"
-           loading="lazy" width="400" height="300" class="therapie-img">
+           alt="Phytotherapie" loading="lazy" width="400" height="300" class="therapie-img">
       <div class="therapie-body">
         <h3 class="therapie-name">Phytotherapie</h3>
-        <p class="therapie-desc">Pflanzenheilkunde gehört zu den ältesten Heilmethoden der Menschheit. Standardisierte Tinkturen und Aufgüsse erzielen therapeutische Wirkung — mit deutlich weniger Nebenwirkungen als synthetische Präparate.</p>
+        <p class="therapie-desc">Pflanzenheilkunde gehört zu den ältesten Heilmethoden der Menschheit. Standardisierte Tinkturen und Aufgüsse wirken therapeutisch — mit deutlich weniger Nebenwirkungen als synthetische Präparate.</p>
       </div>
     </div>
 
     <div class="therapie-card">
       <img src="https://naturheilverfahren-merseburg.de/image/Klangschalentherapie_G.jpg"
-           alt="Klangschalentherapie"
-           loading="lazy" width="400" height="300" class="therapie-img">
+           alt="Klangschalentherapie" loading="lazy" width="400" height="300" class="therapie-img">
       <div class="therapie-body">
         <h3 class="therapie-name">Klangschalentherapie</h3>
         <p class="therapie-desc">Die Vibrationen asiatischer Klangschalen lösen Muskelverspannungen und fördern tiefe seelische Entspannung. Klänge begleiten den Menschen seit Urzeiten und sprechen direkt das Nervensystem an.</p>
@@ -446,8 +522,7 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 
     <div class="therapie-card">
       <img src="https://naturheilverfahren-merseburg.de/image/Blutegel_G.jpg"
-           alt="Blutegeltherapie"
-           loading="lazy" width="400" height="300" class="therapie-img">
+           alt="Blutegeltherapie" loading="lazy" width="400" height="300" class="therapie-img">
       <div class="therapie-body">
         <h3 class="therapie-name">Blutegeltherapie</h3>
         <p class="therapie-desc">Medizinische Blutegel setzen Hirudin und weitere Wirkstoffe frei. Bewährt bei Durchblutungsstörungen, Arthritis, Gicht und Tinnitus. Jede Anwendung dauert ca. 40–90 Minuten.</p>
@@ -456,8 +531,7 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 
     <div class="therapie-card">
       <img src="https://naturheilverfahren-merseburg.de/image/Ausleitungsverfahren_G.jpg"
-           alt="Ausleitungsverfahren — Schröpfen und Aderlass"
-           loading="lazy" width="400" height="300" class="therapie-img">
+           alt="Ausleitungsverfahren" loading="lazy" width="400" height="300" class="therapie-img">
       <div class="therapie-body">
         <h3 class="therapie-name">Ausleitungsverfahren</h3>
         <p class="therapie-desc">Schröpfen, Aderlass und Fasten — bewährte Methoden zur Stoffwechselanregung und Aktivierung der körpereigenen Selbstheilung. Eine der ältesten Säulen der Naturheilkunde.</p>
@@ -466,8 +540,7 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 
     <div class="therapie-card">
       <img src="https://naturheilverfahren-merseburg.de/image/Eigenblut_G.jpg"
-           alt="Eigenbluttherapie"
-           loading="lazy" width="400" height="300" class="therapie-img">
+           alt="Eigenbluttherapie" loading="lazy" width="400" height="300" class="therapie-img">
       <div class="therapie-body">
         <h3 class="therapie-name">Eigenbluttherapie</h3>
         <p class="therapie-desc">Eigenblut wird entnommen und — wahlweise mit homöopathischen Mitteln oder Ozon angereichert — reinjiziert. Wirksam bei Allergien, Immunschwäche und chronischen Erkrankungen.</p>
@@ -476,8 +549,7 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 
     <div class="therapie-card">
       <img src="https://naturheilverfahren-merseburg.de/image/Ohrkerzenanwendung_G.jpg"
-           alt="Ohrkerzentherapie"
-           loading="lazy" width="400" height="300" class="therapie-img">
+           alt="Ohrkerzentherapie" loading="lazy" width="400" height="300" class="therapie-img">
       <div class="therapie-body">
         <h3 class="therapie-name">Ohrkerzentherapie</h3>
         <p class="therapie-desc">Der Kamineffekt erzeugt sanfte Trommelfellbewegungen. Bewährt bei Mittelohrentzündungen, Sinusitis, Tinnitus und Schwindel — besonders schonend für Kinder geeignet.</p>
@@ -486,8 +558,7 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 
     <div class="therapie-card">
       <img src="https://naturheilverfahren-merseburg.de/image/Entspannung_G.jpg"
-           alt="Entspannungsverfahren"
-           loading="lazy" width="400" height="300" class="therapie-img">
+           alt="Entspannungsverfahren" loading="lazy" width="400" height="300" class="therapie-img">
       <div class="therapie-body">
         <h3 class="therapie-name">Entspannungsverfahren</h3>
         <p class="therapie-desc">Autogenes Training, Progressive Muskelentspannung nach Jacobson und Klangschalen-Meditation — drei Wege zur Tiefenentspannung, leicht in den Alltag zu integrieren.</p>
@@ -496,8 +567,7 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 
     <div class="therapie-card">
       <img src="https://naturheilverfahren-merseburg.de/image/Krampfadern_G.jpg"
-           alt="Sanfte Krampfaderentfernung nach Dr. Rieger"
-           loading="lazy" width="400" height="300" class="therapie-img">
+           alt="Sanfte Krampfaderentfernung nach Dr. Rieger" loading="lazy" width="400" height="300" class="therapie-img">
       <div class="therapie-body">
         <h3 class="therapie-name">Sanfte Krampfaderentfernung</h3>
         <p class="therapie-desc">Mit hochkonzentrierter Kochsalzlösung nach Dr. Rieger — ohne OP, ohne Narkose, ohne Narben. Kosmetisch unsichtbar, sofort belastbar und bei Bedarf jederzeit wiederholbar.</p>
@@ -510,15 +580,23 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 <!-- ── Behandlung ── -->
 <section id="behandlung">
   <div class="behandlung-header">
-    <span class="section-overline">Behandlungsverlauf</span>
-    <h2 class="section-title gsap-fade">Ihr Weg in meine Praxis.</h2>
-    <p class="section-body">Jede Behandlung beginnt mit einem persönlichen Gespräch. Ich nehme mir Zeit — für Ihre Geschichte, Ihre Beschwerden und Ihre Ziele.</p>
+    <div class="behandlung-header-text">
+      <span class="section-overline">Behandlungsverlauf</span>
+      <h2 class="section-title gsap-fade">Ihr Weg in meine Praxis.</h2>
+      <p class="section-body">Jede Behandlung beginnt mit einem persönlichen Gespräch. Ich nehme mir Zeit — für Ihre Geschichte, Ihre Beschwerden und Ihre Ziele.</p>
+    </div>
+    <div class="behandlung-header-img-wrap">
+      <img src="https://naturheilverfahren-merseburg.de/image/behandlung.jpg"
+           alt="Behandlung in der Praxis"
+           loading="lazy" width="380" height="285"
+           class="behandlung-header-img">
+    </div>
   </div>
   <div class="behandlung-steps">
     <div class="behandlung-step">
       <span class="step-number">01</span>
       <h3 class="step-title">Erstkontakt</h3>
-      <p class="step-desc">Rufen Sie mich an oder schreiben Sie mir eine Nachricht. Bei einem ersten Kontakt — telefonisch oder persönlich — erfahren Sie Genaueres über meine Therapiemöglichkeiten, und wir klären gemeinsam, wie ich Ihnen helfen kann.</p>
+      <p class="step-desc">Rufen Sie mich an oder schreiben Sie mir. Bei einem ersten Kontakt — telefonisch oder persönlich — erfahren Sie Genaueres über meine Therapiemöglichkeiten, und wir klären gemeinsam, wie ich Ihnen helfen kann.</p>
     </div>
     <div class="behandlung-step">
       <span class="step-number">02</span>
@@ -628,7 +706,8 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
     .fromTo('.hero-headline', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.3, ease: 'power3.out' }, '-=0.75')
     .fromTo('.hero-sub',      { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, ease: 'power3.out' }, '-=0.85')
     .fromTo('.hero-actions',  { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, '-=0.68')
-    .fromTo('.hero-tags',     { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, ease: 'power2.out' }, '-=0.55');
+    .fromTo('.hero-tags',     { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, ease: 'power2.out' }, '-=0.55')
+    .fromTo('.hero-portrait-img', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.4, ease: 'power3.out' }, '-=1.2');
 
   document.querySelectorAll('.gsap-fade').forEach(el => {
     gsap.fromTo(el, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, ease: 'power3.out',
