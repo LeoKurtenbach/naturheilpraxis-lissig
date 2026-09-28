@@ -147,11 +147,29 @@ nav.scrolled { box-shadow: 0 4px 28px rgba(21,18,16,0.10); }
 }
 .hero-content {
   position: relative; z-index: 2;
-  width: 100%; max-width: 820px;
+  width: 100%; max-width: min(760px, calc(100% - 360px));
   padding-left: clamp(1.5rem, 5vw, 5rem);
   padding-right: clamp(1.5rem, 5vw, 5rem);
   padding-bottom: clamp(3rem, 5vw, 5.5rem);
   display: flex; flex-direction: column;
+}
+
+/* ── Hero portrait ── */
+.hero-portrait {
+  position: absolute; right: clamp(2rem, 5vw, 5.5rem); bottom: 0;
+  z-index: 2; width: clamp(240px, 24vw, 320px);
+  margin: 0; text-align: center;
+}
+.hero-portrait-img {
+  display: block; width: 100%; height: auto; aspect-ratio: 274/343;
+  object-fit: cover; object-position: center top;
+  border-radius: 4px 4px 0 0; border-top: 3px solid var(--rose);
+  box-shadow: 0 -4px 40px rgba(0,0,0,0.45);
+}
+.hero-portrait-cap {
+  font-family: var(--font-sans); font-size: 0.82rem; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,255,255,0.88);
+  background: var(--rose); padding: 0.6rem 0.75rem;
 }
 .hero-overline {
   font-size: clamp(1.05rem, 1.35vw, 1.25rem); letter-spacing: 0.22em; text-transform: uppercase;
@@ -351,6 +369,7 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
 }
 @media (max-width: 900px) {
   .hero-content { max-width: 100%; }
+  .hero-portrait { display: none; }
   .hero-headline { font-size: clamp(2.5rem, 6vw, 4rem); }
   .ueber-layout { grid-template-columns: 1fr; }
   .ueber-aside { max-width: 460px; order: -1; }
@@ -428,6 +447,13 @@ footer { background: #0E0818; padding: 2.5rem clamp(1.5rem, 5vw, 5rem); display:
       <a href="#therapien" class="tag">Krampfadern</a>
     </div>
   </div>
+  <figure class="hero-portrait">
+    <img src="img/Uta_portrait.jpg"
+         alt="Uta Lissig, Heilpraktikerin"
+         loading="eager" width="274" height="343"
+         class="hero-portrait-img">
+    <figcaption class="hero-portrait-cap">Uta Lissig · Heilpraktikerin</figcaption>
+  </figure>
 </section>
 
 <!-- ── Über mich ── -->
@@ -683,7 +709,8 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
     .fromTo('.hero-headline', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.3, ease: 'power3.out' }, '-=0.75')
     .fromTo('.hero-sub',      { y: 22, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, ease: 'power3.out' }, '-=0.85')
     .fromTo('.hero-actions',  { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out' }, '-=0.68')
-    .fromTo('.hero-tags',     { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, ease: 'power2.out' }, '-=0.55');
+    .fromTo('.hero-tags',     { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 1.0, ease: 'power2.out' }, '-=0.55')
+    .fromTo('.hero-portrait', { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.3, ease: 'power3.out' }, '-=1.1');
 
   document.querySelectorAll('.gsap-fade').forEach(el => {
     gsap.fromTo(el, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.1, ease: 'power3.out',
